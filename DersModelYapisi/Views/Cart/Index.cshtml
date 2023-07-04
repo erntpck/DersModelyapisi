@@ -1,0 +1,54 @@
+﻿@model DersModelYapisi.ViewModels.CartViewModel
+ @{
+     Layout = null;
+     }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sepet</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sepet</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ürün Adı</th>
+                    <th>Miktar</th>
+                    <th>Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cartProduct in Model.CartProducts)
+                {
+                    <tr>
+                        <td>@cartProduct.Id</td>
+                        <td>@cartProduct.Product.Name</td>
+                        <td>@cartProduct.Quantity x @cartProduct.Product.Price.ToString("0.00") ₺</td>
+                        <td>@cartProduct.Price.ToString("0.00") ₺</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Toplam Fiyat:</strong></td>
+                    <td>@Model.TotalPrice.ToString("0.00") ₺</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>KDV (%18):</strong></td>
+                    <td>@Model.Tax.ToString("0.00") ₺</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>Toplam Tutar:</strong></td>
+                    <td>@Model.TotalAmount.ToString("0.00") ₺</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
